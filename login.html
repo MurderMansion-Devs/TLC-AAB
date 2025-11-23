@@ -1,0 +1,61 @@
+<head><title>Login | TLC Backend</title>
+<link rel="icon" type="image/png" href="https://cdn0.iconfinder.com/data/icons/social-glyph/30/tumblr-60.png">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #spacer {
+    padding-right: 15px;
+  }
+
+</style>
+</head>
+<body>
+  <label id="spacer">
+    <h2>TLC Backend</h2>
+    <h3>Illegal Access Prohibited</h3>
+  </label>
+<form id="login-form">
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password"><br><br>
+  <input type="submit" value="Submit">
+  <button type="button" onclick="window.location.href='indexuser.html'">Lost?</button>
+</form>
+
+<script>
+  // JavaScript for handling login
+  const form = document.getElementById('login-form');
+  const username = document.getElementById('username');
+  const password = document.getElementById('password');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const validCredentials = [
+      { username: 'DVR', password: 'DVR' },
+      { username: 'Chad', password: 'Chad' },
+      { username: 'Skyler', password: 'Skyler' },
+      { username: 'A', password: 'A' },
+      { username: 'B', password: 'B' },
+      { username: 'C', password: 'C' }
+    ];
+
+   for (const credential of validCredentials) {
+      if (credential.username === username.value && credential.password === password.value) {
+        return window.location.href = 'index.html';
+      }
+    } //end of the loop
+    
+  alert('Invalid username or password');
+
+  }); //end of the callback function
+
+</script>
+</body>

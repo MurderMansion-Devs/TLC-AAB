@@ -1,0 +1,45 @@
+a {
+ text-decoration: none;
+}
+
+h2 
+{
+  size: 48PX;
+}
+
+.link-nav 
+{
+ background-color: darkslategray;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 30px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.nav 
+{
+background-color: darkslategray;
+    height: 45px;
+}
+
+.link-nav:hover {
+  background-color: darkslategray;
+  color: white;
+  font-size: 32px;
+  text-decoration: none;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.calltext 
+{
+color: white;
+background-color: gray;
+text-align: center;
+align-items: center;
+
+}

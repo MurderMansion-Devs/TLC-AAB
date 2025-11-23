@@ -1,0 +1,93 @@
+.body 
+{
+margin: 0px;
+padding: 0px;
+}
+
+a 
+{
+  text-decoration: none;
+}
+    
+body 
+{
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#text-button 
+{
+  color: white;
+}
+
+button 
+{
+  background-color: darkslategray;
+  border: 0px;
+  height: 20px;
+  font-size: 18;
+}
+
+h2 
+{
+  size: 48px;
+}
+
+
+.calltext 
+{
+color: white;
+background-color: gray;
+text-align: center;
+align-items: center;
+
+}
+
+.header 
+{
+    background-color: lightgray;
+    height: 165px;
+}
+
+
+.topnav 
+{
+    background-color: darkslategray;
+    height: 25px;
+}
+.link-topnav
+{
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.link-topnav:hover {
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+#unordered 
+{
+    align-items: flex-start;
+    align-content: flex-start;
+    text-align: start;
+}
+
+.column 
+{
+  width: 50%;
+  text-wrap: 1;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
