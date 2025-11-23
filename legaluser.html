@@ -3,7 +3,7 @@
     <p id="output"></p>
 
 <script>
-fetch("tos.txt")
+fetch("https://github.com/MurderMansion-Devs/TLC-AAB/blob/main/tos.txt")
   .then(response => response.text())
   .then(text => {
     document.getElementById("output").textContent = text;
@@ -12,5 +12,6 @@ fetch("tos.txt")
     document.getElementById("output").textContent = "Error loading file: " + err;
   });
 </script>
+
 
 </body></html>
