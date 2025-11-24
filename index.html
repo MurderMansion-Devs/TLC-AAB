@@ -240,5 +240,19 @@
 	
 
 	<script src="script.js"></script>
+	<script>
+		(function checkValidationParam() {
+  const params = new URLSearchParams(window.location.search);
+  const isValid = params.get("valid");
+
+  if (isValid === "true") {
+    // Parameter exists and is valid — run your code here
+    console.log("Validation passed. Page can load.");
+  } else {
+    // No valid param — redirect
+    window.location.href = "/redirect-page.html"; // change to your target URL
+  }
+})();
+	</script>
 </body>
 </html>
