@@ -88,14 +88,13 @@ align-items: center;
     text-align: start;
 }
 
-.column {
-    display: inline-block;
-    vertical-align: top;
-    width: 48%;        /* adjust as needed */
-    margin-right: 2%;  /* space between columns */
+.columns {
+    display: flex;
+    gap: 20px;       /* space between columns */
 }
 
-.column:last-child {
-    margin-right: 0;   /* remove last margin */
+.column {
+    flex: 1;         /* equal width columns */
 }
+
 
