@@ -6,51 +6,50 @@ padding: 0px;
 
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* top row has 2 large images */
-    grid-auto-rows: 150px; /* base row height (you can adjust) */
+    grid-template-columns: repeat(3, 1fr); /* bottom row = 3 images */
     gap: 6px;
     margin-top: 10px;
 }
 
-/* First two images: large */
+/* Top 2 images span 3 columns, appear as two big images */
 .image-grid .img-box:nth-child(1),
 .image-grid .img-box:nth-child(2) {
-    grid-row: span 2;   /* make them tall */
+    grid-column: span 3;   /* take entire width */
+    height: 200px;         /* make them large (adjust as needed) */
 }
 
-/* Next images go full width underneath but arranged in 3 columns */
+/* Bottom images: perfect squares */
 .image-grid .img-box:nth-child(n+3) {
-    grid-column: span 1;
-    height: 100%;
-    padding-top: 100%; /* maintain square shape */
+    aspect-ratio: 1/1;     /* always square */
+    height: auto;
 }
 
 .img-box {
     position: relative;
-    width: 100%;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .img-box img {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
+/* Overlay on last image */
 .img-box.more .more-count {
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.55);
     color: #fff;
+    font-weight: bold;
+    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 22px;
-    font-weight: bold;
 }
+
 
 .whatwedo 
 {
@@ -149,6 +148,7 @@ align-items: center;
 .column {
     flex: 1;         /* equal width columns */
 }
+
 
 
 
