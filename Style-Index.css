@@ -6,15 +6,26 @@ padding: 0px;
 
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
     margin-top: 10px;
+}
+
+/* First two images: large, full-width half columns */
+.img-box:nth-child(-n+2) {
+    grid-row: span 2;      /* make them taller */
+    padding-top: 80%;      /* adjust height ratio */
+}
+
+/* All other images: small square images under the first row */
+.img-box:nth-child(n+3) {
+    grid-column: span 1;
+    padding-top: 100%;     /* perfect squares */
 }
 
 .img-box {
     position: relative;
     width: 100%;
-    padding-top: 100%; /* makes images square */
     overflow: hidden;
     border-radius: 4px;
 }
@@ -141,6 +152,7 @@ align-items: center;
 .column {
     flex: 1;         /* equal width columns */
 }
+
 
 
 
