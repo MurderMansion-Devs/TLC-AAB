@@ -4,53 +4,7 @@ margin: 0px;
 padding: 0px;
 }
 
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    width: 100%;
-}
 
-/* Top two images span 1.5 columns each */
-.img-box:nth-child(1),
-.img-box:nth-child(2) {
-    grid-column: span 1;   /* still part of the same 3-column grid */
-    aspect-ratio: 3 / 2;   /* wider rectangle like your screenshot */
-}
-
-/* Bottom row images: perfect squares */
-.img-box:nth-child(n+3) {
-    aspect-ratio: 1 / 1;
-}
-
-.img-box {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
-.img-box img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Overlay for +16 */
-.img-box.more::after {
-    content: attr(data-count);
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 
@@ -151,6 +105,7 @@ align-items: center;
 .column {
     flex: 1;         /* equal width columns */
 }
+
 
 
 
