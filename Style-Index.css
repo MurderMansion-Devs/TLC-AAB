@@ -4,6 +4,11 @@ margin: 0px;
 padding: 0px;
 }
 
+.whatwedo 
+{
+ padding: 0px;    
+}
+
 #gico
 {
   text-color: black;
@@ -96,5 +101,6 @@ align-items: center;
 .column {
     flex: 1;         /* equal width columns */
 }
+
 
 
