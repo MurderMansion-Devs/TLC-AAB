@@ -88,12 +88,14 @@ align-items: center;
     text-align: start;
 }
 
-.column 
-{
-  width: 50%;
-  text-wrap: 1;
-  align-content: center;
-  align-items: center;
-  text-align: center;
-
+.column {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;        /* adjust as needed */
+    margin-right: 2%;  /* space between columns */
 }
+
+.column:last-child {
+    margin-right: 0;   /* remove last margin */
+}
+
