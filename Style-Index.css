@@ -6,21 +6,23 @@ padding: 0px;
 
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* top row has 2 large images */
+    grid-auto-rows: 150px; /* base row height (you can adjust) */
     gap: 6px;
     margin-top: 10px;
 }
 
-/* First two images: large, full-width half columns */
-.img-box:nth-child(-n+2) {
-    grid-row: span 2;      /* make them taller */
-    padding-top: 80%;      /* adjust height ratio */
+/* First two images: large */
+.image-grid .img-box:nth-child(1),
+.image-grid .img-box:nth-child(2) {
+    grid-row: span 2;   /* make them tall */
 }
 
-/* All other images: small square images under the first row */
-.img-box:nth-child(n+3) {
+/* Next images go full width underneath but arranged in 3 columns */
+.image-grid .img-box:nth-child(n+3) {
     grid-column: span 1;
-    padding-top: 100%;     /* perfect squares */
+    height: 100%;
+    padding-top: 100%; /* maintain square shape */
 }
 
 .img-box {
@@ -32,26 +34,21 @@ padding: 0px;
 
 .img-box img {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* Overlay box like "+16" */
 .img-box.more .more-count {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    color: white;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 24px;
+    align-items: center;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -152,6 +149,7 @@ align-items: center;
 .column {
     flex: 1;         /* equal width columns */
 }
+
 
 
 
