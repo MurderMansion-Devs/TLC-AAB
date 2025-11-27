@@ -15,8 +15,9 @@ padding: 0px;
 
 .post {
     scroll-snap-align: start;
+    padding: 10px;
     flex: 0 0 auto;      /* prevents posts from stretching full width */
-    width: 300px;        /* Give them a visible width */
+    width: 500px;        /* Give them a visible width */
     display: inline-block;
 }
 
