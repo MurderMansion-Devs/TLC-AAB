@@ -4,7 +4,20 @@ margin: 0px;
 padding: 0px;
 }
 
+.postCol {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px;
+    white-space: nowrap;
+}
 
+.post {
+    scroll-snap-align: start;
+    flex: 0 0 auto; /* keeps width consistent */
+}
 
 
 
@@ -15,7 +28,8 @@ padding: 0px;
 
 #gico
 {
-  text-color: black;
+
+ color: black;
 }
 
 a 
