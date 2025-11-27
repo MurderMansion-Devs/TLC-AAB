@@ -11,13 +11,15 @@ padding: 0px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 10px;
-    white-space: nowrap;
 }
 
 .post {
     scroll-snap-align: start;
-    flex: 0 0 auto; /* keeps width consistent */
+    flex: 0 0 auto;      /* prevents posts from stretching full width */
+    width: 300px;        /* Give them a visible width */
+    display: inline-block;
 }
+
 
 
 
