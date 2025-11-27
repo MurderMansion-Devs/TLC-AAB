@@ -10,12 +10,12 @@ padding: 0px;
     gap: 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 10px;
+    padding: 100px;
 }
 
 .post {
     scroll-snap-align: start;
-    padding: 10px;
+    padding: 100px;
     flex: 0 0 auto;      /* prevents posts from stretching full width */
     width: 500px;        /* Give them a visible width */
     display: inline-block;
