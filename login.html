@@ -1,142 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | TLC Backend</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Login | TLC Backend</title>
+<link rel="icon" type="image/png" href="https://cdn0.iconfinder.com/data/icons/social-glyph/30/tumblr-60.png">
 
-    <link rel="icon" type="image/png" href="https://cdn0.iconfinder.com/data/icons/social-glyph/30/tumblr-60.png"> 
+<style>
+  /* ----- Config / Background ----- */
+  :root{
+    /* Replace this URL if you want a different cityscape */
+    --bg-url: url('https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+    --metro-blue: #0078d7;
+    --accent: #1493ff;
+    --card-width: 520px;
+    --gutter: 24px;
+  }
 
-    <link rel="stylesheet" href="style-login.css">
-    <style>
-        body {
+  /* ----- Base ----- */
+  * { box-sizing: border-box; }
+  html,body { height:100%; margin:0; font-family:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  body {
+    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), var(--bg-url);
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: #fff;
+    padding: env(safe-area-inset);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* subtle animated parallax effect (very light) */
+  @media (prefers-reduced-motion: no-preference) {
+    body::before {
+      content:"";
+      position:fixed; inset:0;
+      background: linear-gradient(120deg, rgba(0,0,0,0.12), rgba(0,0,0,0));
+      pointer-events:none;
+      transform: translateZ(0);
+      will-change: transform;
+      animation: slowFloat 18s linear infinite;
+      opacity:0.9;
+    }
+    @keyframes slowFloat { 0%{ transform:translateY(0);} 50%{ transform:translateY(-6px);} 100%{ transform:translateY(0);} }
+  }
+
+  /* ----- Center Stage / Metro layout ----- */
+  .shell {
+    width: min(100%, calc(var(--card-width) + 2 * var(--gutter)));
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr var(--card-width);
+    gap: 36px;
+    align-items: center;
+    padding: clamp(18px, 3vw, 48px);
+  }
+
+  /* Left: Big Metro Title / message */
+  .hero {
+    color: white;
+    padding: 30px;
+    display:flex;
+    flex-direction:column;
+    gap: 18px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+  .brand {
+    font-size: clamp(34px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 0.95;
+    color: white;
     margin: 0;
-    padding: 0;
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
+  }
+  .subtitle {
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 400;
+    opacity: 0.95;
+    margin: 0;
+  }
+  .desc {
+    margin-top: 8px;
+    color: rgba(255,255,255,0.92);
+    font-size: clamp(14px, 1.6vw, 18px);
+    max-width: 58ch;
+    line-height: 1.5;
+  }
 
-/* HEADER */
-.header {
-    background-color: lightgray;
-    padding: 30px 10px;
-}
+  /* Right: Acrylic login card */
+  .card {
+    width:100%;
+    max-width: var(--card-width);
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 28px;
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    color: #fff;
+  }
 
-.header h2 {
-    margin: 10px 0;
-    font-size: 32px;
-}
+  /* small header inside card */
+  .card .card-head {
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom: 18px;
+  }
+  .avatar {
+    width:72px; height:72px; border-radius:14px;
+    background: linear-gradient(135deg,var(--metro-blue),var(--accent));
+    display:inline-grid; place-items:center; font-weight:700; font-size:28px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+  .card h3 { margin:0; font-size:20px; font-weight:700; color: #fff; }
+  .card p.small { margin:0; opacity:0.9; font-size:14px; color: rgba(255,255,255,0.9); }
 
-/* NAVIGATION */
-.topnav {
-    background-color: darkslategray;
-    padding: 8px 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+  /* Form controls: big, Metro */
+  form { display:flex; flex-direction:column; gap:14px; margin-top:8px; }
+  label { display:block; font-size:18px; font-weight:700; color: rgba(255,255,255,0.95); margin-bottom:6px; }
+  input[type="text"], input[type="password"] {
+    width:100%;
+    padding:18px 16px;
+    font-size:20px;
+    border-radius:10px;
+    border: 2px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    outline: none;
+  }
+  input::placeholder { color: rgba(255,255,255,0.6); font-weight:500; }
+  input:focus { border-color: rgba(255,255,255,0.25); box-shadow: 0 4px 18px rgba(20,147,255,0.12); }
 
-.link-topnav {
-    color: whitesmoke;
-    margin: 0 8px;
-    text-decoration: none;
-    font-size: 15px;
-    padding: 4px 8px;
-}
-
-.link-topnav:hover {
-    font-weight: bold;
-}
-
-/* COLUMNS */
-.columns {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
-.column {
-    max-width: 500px;
-}
-
-/* LIST ALIGNMENT */
-#unordered {
-    text-align: left;
-    padding-left: 20px;
-}
-
-/* FACEBOOK POSTS SCROLLER */
-.postCol {
-    display: flex;
-    gap: 2px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 2px;
-}
-
-.post {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-    width: 90vw; /* full width on mobile */
-    max-width: 500px;
-}
-
-.fb-frame {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 9 / 16; /* auto responsive height */
+  /* Buttons - Metro tiles */
+  .buttons { display:flex; gap:12px; margin-top:8px; flex-direction:column; }
+  .btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:16px;
+    font-size:20px;
+    font-weight:700;
+    border-radius:10px;
     border: none;
-    
-}
+    cursor:pointer;
+    width:100%;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: linear-gradient(180deg, var(--metro-blue), #005ea6); color: white; box-shadow: 0 8px 20px rgba(0,120,215,0.28); }
+  .btn.secondary { background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.06); }
 
-/* MOBILE FIXES */
-@media (max-width: 600px) {
-    .header h2 {
-        font-size: 26px;
-    }
+  .helper {
+    display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:6px;
+    color: rgba(255,255,255,0.85); font-size:14px;
+  }
+  .helper a { color: rgba(255,255,255,0.95); text-decoration:none; font-weight:700; }
+  .helper a:hover { text-decoration:underline; color: #fff; }
 
-    .topnav {
-        font-size: 14px;
-    }
+  /* Footer small note */
+  .legal { margin-top:18px; font-size:13px; color: rgba(255,255,255,0.75); }
 
-    .postCol {
-        padding: 10px;
-    }
+  /* Responsive: stack on small screens */
+  @media (max-width: 920px) {
+    .shell { grid-template-columns: 1fr; gap:20px; justify-items:center; }
+    .hero { text-align:center; padding: 6px 8px; }
+    .card { width: 95%; max-width: 720px; padding: 22px; border-radius:12px; }
+    .avatar { width:64px; height:64px; font-size:24px; border-radius:12px; }
+  }
+  @media (max-width: 420px) {
+    :root { --card-width: 100%; }
+    .brand { font-size: clamp(28px, 10vw, 48px); }
+    .subtitle { font-size: clamp(16px, 4.5vw, 22px); }
+    input[type="text"], input[type="password"] { padding:16px; font-size:18px; }
+    .btn { padding:14px; font-size:18px; }
+  }
 
-    .post {
-        padding: 0;
-    }
-}
-
-    </style>
+  /* Accessibility focus */
+  .btn:focus, input:focus { outline: 3px solid rgba(20,147,255,0.18); outline-offset: 2px; }
+</style>
 </head>
-
 <body>
 
-<div class="page-title">
-    <h1>TLC Backend</h1>
-    <h2>Illegal Access Prohibited?</h2>
-</div>
+  <div class="shell" role="main" aria-labelledby="page-title">
+    <!-- HERO / Left column -->
+    <section class="hero" aria-hidden="false">
+      <h1 id="page-title" class="brand">TLC Backend</h1>
+      <h2 class="subtitle">Illegal Access Prohibited</h2>
+      <p class="desc">This portal is restricted to authorized personnel only. All access is monitored and logged. If you are authorized, please sign in. If you need assistance, click "Lost?"</p>
+    </section>
 
-<form id="login-form" class="metro-card">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username">
+    <!-- LOGIN CARD / Right column -->
+    <aside class="card" aria-label="Sign-in panel">
+      <div class="card-head">
+        <div class="avatar" aria-hidden="true">TLC</div>
+        <div>
+          <h3>Sign in to TLC Backend</h3>
+          <p class="small">Secure access required — enter your credentials</p>
+        </div>
+      </div>
 
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password">
+      <form id="login-form" autocomplete="on" aria-describedby="login-note">
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" placeholder="Enter username" inputmode="text" required>
+        </div>
 
-    <button type="submit" class="metro-btn primary">Login</button>
-    <button type="button" class="metro-btn secondary" onclick="window.location.href='indexuser.html'">Lost?</button>
-</form>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn primary" id="sign-in-btn" aria-label="Sign in">Sign In</button>
+          <button type="button" class="btn secondary" id="lost-btn" onclick="location.href='indexuser.html'">Lost?</button>
+        </div>
+
+        <div class="helper">
+          <span id="login-note">Tip: Your username is case-sensitive.</span>
+          <a href="#" onclick="alert('Contact the administrator for help.'); return false;">Need help?</a>
+        </div>
+
+        <div class="legal" aria-hidden="true">By signing in you agree to the company's acceptable use policy.</div>
+      </form>
+    </aside>
+  </div>
 
 <script>
-const form = document.getElementById('login-form');
-const username = document.getElementById('username');
-const password = document.getElementById('password');
+  // Login logic (keeps your credential list)
+  (function(){
+    const form = document.getElementById('login-form');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
 
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-
+    // Keep credentials here (as in your original)
     const validCredentials = [
       { username: 'DVR', password: 'DVR' },
       { username: 'Chad', password: 'Chad' },
@@ -146,14 +246,41 @@ form.addEventListener('submit', function(event) {
       { username: 'C', password: 'C' }
     ];
 
-    for (const cred of validCredentials) {
-        if (cred.username === username.value && cred.password === password.value) {
-            return window.location.href = 'index.html?valid=true';
-        }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const u = username.value.trim();
+      const p = password.value;
+
+      if (!u || !p) { alert('Please fill both fields.'); return; }
+
+      const valid = validCredentials.some(c => c.username === u && c.password === p);
+      if (valid) {
+        // success: redirect with query param
+        location.href = 'index.html?valid=true';
+      } else {
+        // shake animation + message
+        flashInvalid();
+        alert('Invalid username or password');
+      }
+    });
+
+    // small visual cue for invalid (temporary)
+    function flashInvalid(){
+      const card = document.querySelector('.card');
+      card.animate([
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(-8px)' },
+        { transform: 'translateX(8px)' },
+        { transform: 'translateX(0)' }
+      ], { duration: 300, easing: 'ease-in-out' });
     }
 
-    alert('Invalid username or password');
-});
+    // allow Enter to submit from password field on mobile keyboards
+    password.addEventListener('keyup', function(e){
+      if (e.key === 'Enter') form.dispatchEvent(new Event('submit',{cancelable:true}));
+    });
+  })();
 </script>
 
 </body>
