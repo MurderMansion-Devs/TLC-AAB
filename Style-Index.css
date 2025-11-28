@@ -79,6 +79,7 @@ align-items: center;
 {
     background-color: lightgray;
     height: 165px;
+    width: 100%;
 }
 
 
@@ -86,6 +87,7 @@ align-items: center;
 {
     background-color: darkslategray;
     height: 25px;
+    width: 100%;
 }
 .link-topnav
 {
