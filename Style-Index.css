@@ -1,135 +1,98 @@
-.body 
-{
-margin: 0px;
-padding: 0px;
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
 }
 
+/* HEADER */
+.header {
+    background-color: lightgray;
+    padding: 30px 10px;
+}
+
+.header h2 {
+    margin: 10px 0;
+    font-size: 32px;
+}
+
+/* NAVIGATION */
+.topnav {
+    background-color: darkslategray;
+    padding: 8px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.link-topnav {
+    color: whitesmoke;
+    margin: 0 8px;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 4px 8px;
+}
+
+.link-topnav:hover {
+    font-weight: bold;
+}
+
+/* COLUMNS */
+.columns {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.column {
+    max-width: 500px;
+}
+
+/* LIST ALIGNMENT */
+#unordered {
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* FACEBOOK POSTS SCROLLER */
 .postCol {
     display: flex;
-    flex-direction: row;
     gap: 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 100px;
+    padding: 20px;
 }
 
 .post {
     scroll-snap-align: start;
-    padding: 100px;
-    flex: 0 0 auto;      /* prevents posts from stretching full width */
-    width: 500px;        /* Give them a visible width */
-    display: inline-block;
+    flex: 0 0 auto;
+    width: 90vw; /* full width on mobile */
+    max-width: 500px;
 }
 
-
-
-
-.whatwedo 
-{
- padding: 0px;    
-}
-
-#gico
-{
-
- color: black;
-}
-
-a 
-{
-  text-decoration: none;
-}
-    
-body 
-{
-  align-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-#text-button 
-{
-  color: white;
-}
-
-button 
-{
-  background-color: darkslategray;
-  border: 0px;
-  height: 20px;
-  font-size: 18;
-}
-
-h2 
-{
-  size: 48px;
-}
-
-
-.calltext 
-{
-color: white;
-background-color: gray;
-text-align: center;
-align-items: center;
-
-}
-
-.header 
-{
-    background-color: lightgray;
-    height: 165px;
+.fb-frame {
     width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16; /* auto responsive height */
+    border: none;
+    overflow: hidden;
 }
 
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+    .header h2 {
+        font-size: 26px;
+    }
 
-.topnav 
-{
-    background-color: darkslategray;
-    height: 25px;
-    width: 100%;
+    .topnav {
+        font-size: 14px;
+    }
+
+    .postCol {
+        padding: 10px;
+    }
+
+    .post {
+        padding: 0;
+    }
 }
-.link-topnav
-{
-    color: whitesmoke;
-    text-decoration: none;
-    font-size: 15px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-.link-topnav:hover {
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  text-decoration: none;
-  padding-left: 6px;
-  padding-right: 6px;
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-#unordered 
-{
-    align-items: flex-start;
-    align-content: flex-start;
-    text-align: start;
-}
-
-.columns {
-    display: flex;
-    gap: 20px;       /* space between columns */
-}
-
-.column {
-    flex: 1;         /* equal width columns */
-}
-
-
-
-
-
-
-
-
-
