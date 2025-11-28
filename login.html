@@ -8,6 +8,107 @@
     <link rel="icon" type="image/png" href="https://cdn0.iconfinder.com/data/icons/social-glyph/30/tumblr-60.png"> 
 
     <link rel="stylesheet" href="style-login.css">
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+    background-color: lightgray;
+    padding: 30px 10px;
+}
+
+.header h2 {
+    margin: 10px 0;
+    font-size: 32px;
+}
+
+/* NAVIGATION */
+.topnav {
+    background-color: darkslategray;
+    padding: 8px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.link-topnav {
+    color: whitesmoke;
+    margin: 0 8px;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 4px 8px;
+}
+
+.link-topnav:hover {
+    font-weight: bold;
+}
+
+/* COLUMNS */
+.columns {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.column {
+    max-width: 500px;
+}
+
+/* LIST ALIGNMENT */
+#unordered {
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* FACEBOOK POSTS SCROLLER */
+.postCol {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 2px;
+}
+
+.post {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    width: 90vw; /* full width on mobile */
+    max-width: 500px;
+}
+
+.fb-frame {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16; /* auto responsive height */
+    border: none;
+    
+}
+
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+    .header h2 {
+        font-size: 26px;
+    }
+
+    .topnav {
+        font-size: 14px;
+    }
+
+    .postCol {
+        padding: 10px;
+    }
+
+    .post {
+        padding: 0;
+    }
+}
+
+    </style>
 </head>
 
 <body>
