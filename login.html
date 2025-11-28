@@ -1,29 +1,39 @@
-<head><title>Login | TLC Backend</title>
-<link rel="icon" type="image/png" href="https://cdn0.iconfinder.com/data/icons/social-glyph/30/tumblr-60.png">
-<link rel="stylesheet" href="style-login.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TLC Backend</title>
 
+    <link rel="icon" type="image/png" href="https://cdn0.iconfinder.com/data/icons/social-glyph/30/tumblr-60.png">
+
+    <link rel="stylesheet" href="style-login.css">
 </head>
+
 <body>
-  <label id="spacer">
-    <p style="font-size: 148px;">TLC Backend</h2>
-    <p style="font-size: 132px;">Illegal Access Prohibited</h3>
-  </label>
-<form id="login-form">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username"><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password"><br><br>
-  <input type="submit" value="Submit">
-  <button type="button" onclick="window.location.href='indexuser.html'">Lost?</button>
+
+<div class="page-title">
+    <h1>TLC Backend</h1>
+    <h2>Illegal Access Prohibited</h2>
+</div>
+
+<form id="login-form" class="metro-card">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password">
+
+    <button type="submit" class="metro-btn primary">Login</button>
+    <button type="button" class="metro-btn secondary" onclick="window.location.href='indexuser.html'">Lost?</button>
 </form>
 
 <script>
-  // JavaScript for handling login
-  const form = document.getElementById('login-form');
-  const username = document.getElementById('username');
-  const password = document.getElementById('password');
+const form = document.getElementById('login-form');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
 
-  form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function(event) {
     event.preventDefault();
 
     const validCredentials = [
@@ -35,17 +45,15 @@
       { username: 'C', password: 'C' }
     ];
 
-   for (const credential of validCredentials) {
-      if (credential.username === username.value && credential.password === password.value) {
-        return window.location.href = 'index.html?valid=true';
-      }
-    } //end of the loop
-    
-  alert('Invalid username or password');
+    for (const cred of validCredentials) {
+        if (cred.username === username.value && cred.password === password.value) {
+            return window.location.href = 'index.html?valid=true';
+        }
+    }
 
-  }); //end of the callback function
-
+    alert('Invalid username or password');
+});
 </script>
 
 </body>
-
+</html>

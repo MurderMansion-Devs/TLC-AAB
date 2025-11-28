@@ -1,4 +1,99 @@
-@media (min-width: 600px) 
-{
+/* Base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #f2f2f2;
+    text-align: center;
+}
 
+/* Title Section */
+.page-title {
+    padding: 40px 20px;
+    color: #ffffff;
+    background: #0078d7; /* Windows Blue */
+}
+
+.page-title h1 {
+    font-size: 38px;
+    margin: 0;
+}
+
+.page-title h2 {
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+/* Metro Card */
+.metro-card {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 6px;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.15);
+    text-align: left;
+}
+
+/* Inputs */
+.metro-card label {
+    font-size: 16px;
+    color: #0078d7;
+    font-weight: 600;
+}
+
+.metro-card input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 18px 0;
+    font-size: 16px;
+    border: 2px solid #0078d7;
+    border-radius: 4px;
+    outline: none;
+}
+
+.metro-card input:focus {
+    border-color: #1493ff;
+}
+
+/* Buttons */
+.metro-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.metro-btn.primary {
+    background: #0078d7;
+    color: white;
+}
+
+.metro-btn.primary:hover {
+    background: #1493ff;
+}
+
+.metro-btn.secondary {
+    background: #e1e1e1;
+    color: #333;
+}
+
+.metro-btn.secondary:hover {
+    background: #d5d5d5;
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+    .page-title h1 {
+        font-size: 32px;
+    }
+    .page-title h2 {
+        font-size: 18px;
+    }
 }
