@@ -255,13 +255,9 @@
       if (!u || !p) { alert('Please fill both fields.'); return; }
 
       const valid = validCredentials.some(c => c.username === u && c.password === p);
-      if (valid) {
-        if(password.value="TLC-Admin")
-        {location.href='https://github.com/MurderMansion-Devs/TLC-AAB'}
-        else {
-        // success: redirect with query param
-        location.href = 'index.html?valid=true';
-        }
+      if (valid) 
+      {
+        location.href = 'index.html?valid=true'
       }
       else {
         // shake animation + message
