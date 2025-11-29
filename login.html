@@ -238,10 +238,10 @@
 
     // Keep credentials here (as in your original)
     const validCredentials = [
+      { username: 'TLC', password: 'TLC-Admin' },
+      { username: 'TLC', password: 'TLC-Chad' },
+      { username: 'TLC', password: 'TLC-Skyler' },
       { username: 'DVR', password: 'DVR' },
-      { username: 'Chad', password: 'Chad' },
-      { username: 'Skyler', password: 'Skyler' },
-      { username: 'A', password: 'A' },
       { username: 'B', password: 'B' },
       { username: 'C', password: 'C' }
     ];
@@ -256,12 +256,16 @@
 
       const valid = validCredentials.some(c => c.username === u && c.password === p);
       if (valid) {
+        if(p="TLC-Admin")
+        {location.href='https://github.com/MurderMansion-Devs/TLC-AAB'}
+        else{
         // success: redirect with query param
         location.href = 'index.html?valid=true';
-      } else {
+        }
+      }
+      else {
         // shake animation + message
         flashInvalid();
-        alert('Invalid username or password');
       }
     });
 
