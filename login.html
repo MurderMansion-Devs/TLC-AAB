@@ -230,58 +230,77 @@
   </div>
 
 <script>
-  // Login logic (keeps your credential list)
-  (function(){
-    const form = document.getElementById('login-form');
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
+(function () {
+  const form = document.getElementById('login-form');
+  const usernameInput = document.getElementById('username');
+  const passwordInput = document.getElementById('password');
 
-    // Keep credentials here (as in your original)
-    const validCredentials = [
-      { username: 'TLC', password: 'TLC-Admin' },
-      { username: 'TLC', password: 'TLC-Chad' },
-      { username: 'TLC', password: 'TLC-Skyler' },
-      { username: 'DVR', password: 'DVR' },
-      { username: 'B', password: 'B' },
-      { username: 'C', password: 'C' }
-    ];
+  const USERS_JSON_URL =
+    "https://raw.githubusercontent.com/MurderMansion-Devs/TLC-AAB/main/users.json";
 
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
+  // ---------- SHA-384 ----------
+  async function sha384(text) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest("SHA-384", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  }
 
-      const u = username.value.trim();
-      const p = password.value;
+  // ---------- LOGIN ----------
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-      if (!u || !p) { alert('Please fill both fields.'); return; }
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value;
 
-      const valid = validCredentials.some(c => c.username === u && c.password === p);
-      if (valid) 
-      {
-        location.href = 'index.html?valid=true'
-      }
-      else {
-        // shake animation + message
-        flashInvalid();
-      }
-    });
-
-    // small visual cue for invalid (temporary)
-    function flashInvalid(){
-      const card = document.querySelector('.card');
-      card.animate([
-        { transform: 'translateX(0)' },
-        { transform: 'translateX(-8px)' },
-        { transform: 'translateX(8px)' },
-        { transform: 'translateX(0)' }
-      ], { duration: 300, easing: 'ease-in-out' });
+    if (!username || !password) {
+      alert("Please fill both fields.");
+      return;
     }
 
-    // allow Enter to submit from password field on mobile keyboards
-    password.addEventListener('keyup', function(e){
-      if (e.key === 'Enter') form.dispatchEvent(new Event('submit',{cancelable:true}));
-    });
-  })();
+    try {
+      const response = await fetch(USERS_JSON_URL, { cache: "no-store" });
+      const data = await response.json();
+
+      const passwordHash = await sha384(password);
+
+      const valid = data.users.some(u =>
+        u.username === username &&
+        u.passwordHash === passwordHash
+      );
+
+      if (valid) {
+        location.href = 'index.html?valid=true';
+      } else {
+        flashInvalid();
+      }
+    }
+    catch (err) {
+      console.error(err);
+      alert("Authentication service unavailable.");
+    }
+  });
+
+  // ---------- INVALID SHAKE ----------
+  function flashInvalid() {
+    const card = document.querySelector('.card');
+    card.animate([
+      { transform: 'translateX(0)' },
+      { transform: 'translateX(-8px)' },
+      { transform: 'translateX(8px)' },
+      { transform: 'translateX(0)' }
+    ], { duration: 300, easing: 'ease-in-out' });
+  }
+
+  // Mobile Enter key support
+  passwordInput.addEventListener('keyup', function (e) {
+    if (e.key === 'Enter')
+      form.dispatchEvent(new Event('submit', { cancelable: true }));
+  });
+})();
 </script>
+
 
 </body>
 </html>

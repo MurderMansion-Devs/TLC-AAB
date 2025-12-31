@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "username": "TLC",
+      "passwordHash": "8b89b0569748a4428c584a1afd48352c7039c263769e7250828f1b3ff96e6037e54e2b224612199498713cd731f78e05"
+    },
+    {
+      "username": "DVR",
+      "passwordHash": "2ccadcc00fc72fa06f63702f487f4f21a169513ed1d8a7b33777bc01e92b7c6aefe1ddf70c7bcc3d28b90b3874e333ee"
+    }
+  ]
+}
